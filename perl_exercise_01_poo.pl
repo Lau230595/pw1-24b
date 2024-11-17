@@ -1,3 +1,6 @@
+#!c:/strawberry/perl/bin/perl.exe
+use strict;
+use warnings;
 use Moose;
 
 package Persona;

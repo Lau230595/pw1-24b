@@ -1,16 +1,18 @@
-use Moose;
+use strict;
+use warnings;
+use Moo;
 
-package Persona;
+package Coche;
+has 'marca' => (is => 'ro');
+has 'modelo' => (is => 'ro');
+has 'año' => (is => 'ro', default => sub { 2024 });
 
-has 'nombre' => (is => 'rw', isa => 'Str');
-has 'edad'   => (is => 'rw', isa => 'Int');
-
-sub BUILD {
+sub descripcion {
     my $self = shift;
-    print "Creando una persona: " . $self->nombre . "\n";
+    return "Coche: " . $self->marca . " " . $self->modelo . ", Año: " . $self->año;
 }
 
 package main;
-
-my $persona = Persona->new(nombre => "Carlos", edad => 30);
+my $coche = Coche->new(marca => 'Toyota', modelo => 'Corolla');
+print $coche->descripcion() . "\n";ona = Persona->new(nombre => "Carlos", edad => 30);
 
