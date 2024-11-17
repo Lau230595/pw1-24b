@@ -1,22 +1,18 @@
+#!c:/strawberry/perl/bin/perl.exe
 use strict;
 use warnings;
-use Moose;
+use lib '.';  # Asegura que los módulos estén accesibles
+use Libro;
+use Biblioteca;
 
-package Biblioteca;
+# Crear instancias de libros
+my $libro1 = Libro->new(titulo => 'El Principito');
+my $libro2 = Libro->new(titulo => '1984');
 
-has 'libros' => (is => 'rw', isa => 'ArrayRef[Libro]', default => sub { [] });
+# Crear una biblioteca y agregar libros
+my $biblioteca = Biblioteca->new();
+$biblioteca->agregar_libro($libro1);
+$biblioteca->agregar_libro($libro2);
 
-package Libro;
-
-has 'titulo' => (is => 'rw', isa => 'Str');
-
-package main;
-
-my $libro1 = Libro->new(titulo => "Perl Básico");
-my $libro2 = Libro->new(titulo => "POO en Perl");
-my $biblioteca = Biblioteca->new(libros => [$libro1, $libro2]);
-
-foreach my $libro (@{$biblioteca->libros}) {
-    print "Libro: " . $libro->titulo . "\n";
-}
-
+# Mostrar los libros en la biblioteca
+print "Libros en la biblioteca: ", $biblioteca->listar_libros, "\n";

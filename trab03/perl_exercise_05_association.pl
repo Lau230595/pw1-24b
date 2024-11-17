@@ -1,18 +1,11 @@
+#!c:/strawberry/perl/bin/perl.exe
 use strict;
-use warnings; 
-use Moose;
+use warnings;
+use lib '.';  # Agrega el directorio actual al @INC
+use Profesor;
+use Curso;
 
-package Persona;
+my $profesor = Profesor->new(nombre => 'Juan Carlos');
+my $curso = Curso->new(nombre => 'Química', profesor => $profesor);
 
-has 'nombre' => (is => 'rw', isa => 'Str');
-has 'mascota' => (is => 'rw', isa => 'Maybe[Animal]');
-
-package Animal;
-
-has 'nombre' => (is => 'rw', isa => 'Str');
-
-package main;
-
-my $mascota = Animal->new(nombre => "Luna");
-my $persona = Persona->new(nombre => "Laura", mascota => $mascota);
-print $persona->nombre . " tiene una mascota llamada " . $persona->mascota->nombre . "\n";
+print $curso->descripcion, "\n";

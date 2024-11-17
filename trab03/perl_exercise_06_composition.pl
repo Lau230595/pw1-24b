@@ -1,17 +1,15 @@
+#!c:/strawberry/perl/bin/perl.exe
 use strict;
-use warnings;  
-use Moose;
+use warnings;
+use lib '.';  # Asegura que los módulos Coche.pm y Motor.pm sean accesibles
+use Motor;
+use Coche;
 
-package Motor;
+# Crear instancia de Motor
+my $motor = Motor->new(tipo => 'V8');
 
-has 'potencia' => (is => 'rw', isa => 'Str');
-
-package Coche;
-
-has 'motor' => (is => 'rw', isa => 'Motor');
-
-package main;
-
-my $motor = Motor->new(potencia => "120HP");
+# Crear instancia de Coche con composición del Motor
 my $coche = Coche->new(motor => $motor);
-print "El coche tiene un motor de " . $coche->motor->potencia . "\n";
+
+# Imprimir descripción del Coche
+print $coche->descripcion, "\n";

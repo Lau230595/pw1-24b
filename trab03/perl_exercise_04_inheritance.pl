@@ -1,18 +1,15 @@
+#!c:/strawberry/perl/bin/perl.exe
 use strict;
 use warnings;
-use Moose;
+use lib '.';  # Asegura que el módulo Persona.pm sea accesible
+use Persona;
+use Estudiante;
 
-package Vehiculo;
+my $estudiante = Estudiante->new(
+    nombre  => 'Marisol',
+    edad    => 22,
+    carrera => 'Ingeniería Ambiental'
+);
 
-has 'marca' => (is => 'rw', isa => 'Str');
-
-package Coche;
-extends 'Vehiculo';
-
-has 'modelo' => (is => 'rw', isa => 'Str');
-
-package main;
-
-my $coche = Coche->new(marca => "Toyota", modelo => "Corolla");
-print "Marca: " . $coche->marca . ", Modelo: " . $coche->modelo . "\n";
-
+print $estudiante->saludar, "\n";
+print $estudiante->presentarse, "\n";

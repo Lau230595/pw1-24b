@@ -1,18 +1,8 @@
+#!c:/strawberry/perl/bin/perl.exe
 use strict;
 use warnings;
-use Moose;
+use lib '.';  # Agrega el directorio actual al @INC
+use Persona;
 
-package Persona;
-
-has 'nombre' => (is => 'rw', isa => 'Str');
-has 'edad'   => (is => 'rw', isa => 'Int');
-
-sub BUILD {
-    my $self = shift;
-    print "Creando una persona: " . $self->nombre . "\n";
-}
-
-package main;
-
-my $persona = Persona->new(nombre => "Carlos", edad => 30);
-
+my $persona = Persona->new(nombre => 'Carlos', edad => 30);
+print "Crea una nueva persona: ", $persona->saludar, "\n";
