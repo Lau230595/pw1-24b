@@ -1,19 +1,15 @@
+#!c:/strawberry/perl/bin/perl.exe
 use strict;
 use warnings;
-use Moose;
+use lib '.';  # Asegura que el módulo Persona.pm sea accesible
+use Persona;
+use Estudiante;
 
-package Animal;
-has 'nombre' => (is => 'rw', isa => 'Str');
+my $estudiante = Estudiante->new(
+    nombre  => 'Marisol',
+    edad    => 22,
+    carrera => 'Ingeniería Ambiental'
+);
 
-package Perro;
-extends 'Animal';
-
-sub ladrar {
-    my $self = shift;
-    return $self->nombre . " dice: ¡Guau!";
-}
-
-package main;
-my $perro = Perro->new(nombre => 'Rex');
-print $perro->ladrar() . "\n";
-
+print $estudiante->saludar, "\n";
+print $estudiante->presentarse, "\n";

@@ -1,17 +1,18 @@
+#!c:/strawberry/perl/bin/perl.exe
 use strict;
 use warnings;
-use Moose;
+use lib '.';  # Asegura que los módulos estén accesibles
+use Libro;
+use Biblioteca;
 
-package Estudiante;
-has 'nombre' => (is => 'rw', isa => 'Str');
+# Crear instancias de libros
+my $libro1 = Libro->new(titulo => 'El Principito');
+my $libro2 = Libro->new(titulo => '1984');
 
-package Curso;
-has 'estudiantes' => (is => 'rw', isa => 'ArrayRef[Estudiante]');
+# Crear una biblioteca y agregar libros
+my $biblioteca = Biblioteca->new();
+$biblioteca->agregar_libro($libro1);
+$biblioteca->agregar_libro($libro2);
 
-package main;
-my $est1 = Estudiante->new(nombre => 'Laura');
-my $est2 = Estudiante->new(nombre => 'Carlos');
-my $curso = Curso->new(estudiantes => [$est1, $est2]);
-print "Estudiantes en el curso: " . join(", ", map { $_->nombre } @{$curso->estudiantes}) . "\n";
-
-
+# Mostrar los libros en la biblioteca
+print "Libros en la biblioteca: ", $biblioteca->listar_libros, "\n";

@@ -1,14 +1,17 @@
+#!c:/strawberry/perl/bin/perl.exe
 use strict;
-use warnings; 
-use Moose;
+use warnings;
+use lib '.';  # Asegura que el módulo Persona.pm sea accesible
+use Persona;
 
-package Animal;
+my $persona = Persona->new(nombre => 'Sonia', edad => 50);
 
-has 'nombre' => (is => 'rw', isa => 'Str');
+# Información inicial
+print "Información inicial: ", $persona->saludar, "\n";
 
-package main;
+# Actualizando atributos usando setters
+$persona->nombre('Sonia Vilca');
+$persona->edad(51);
 
-my $animal = Animal->new(nombre => "Perro");
-print "Nombre: " . $animal->nombre . "\n";
-$animal->nombre("Gato");
-print "Nuevo Nombre: " . $animal->nombre . "\n";
+# Información actualizada
+print "Información actualizada: ", $persona->saludar, "\n";

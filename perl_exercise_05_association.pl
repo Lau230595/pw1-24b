@@ -1,14 +1,11 @@
+#!c:/strawberry/perl/bin/perl.exe
 use strict;
-use warnings; 
-use Moose;
+use warnings;
+use lib '.';  # Agrega el directorio actual al @INC
+use Profesor;
+use Curso;
 
-package Motor;
-has 'potencia' => (is => 'rw', isa => 'Int');
+my $profesor = Profesor->new(nombre => 'Juan Carlos');
+my $curso = Curso->new(nombre => 'Química', profesor => $profesor);
 
-package Coche;
-has 'motor' => (is => 'rw', isa => 'Motor');
-
-package main;
-my $motor = Motor->new(potencia => 150);
-my $coche = Coche->new(motor => $motor);
-print "Potencia del motor: " . $coche->motor->potencia . " HP\n";
+print $curso->descripcion, "\n";
